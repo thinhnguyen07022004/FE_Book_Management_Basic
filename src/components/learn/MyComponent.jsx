@@ -1,11 +1,17 @@
-
-
-const MyComponent = () =>{
+import "./style.css";
+const MyComponent = () => {
   return (
-    <div> eric & hoidanit update</div>
+    <>
+      <div> eric & hoidanit update</div>
+      <div
+        className="child"
+        style={{ borderRadius: "10px", border: "solid, 1px" }}
+      >
+        Child
+      </div>
+    </>
   );
 };
-
 
 export default MyComponent;
 // default được hiểu chỉ xuất duy nhất 1 component trong file này ra ngoài để sử dụng
