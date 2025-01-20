@@ -1,8 +1,20 @@
 import "./style.css";
 const MyComponent = () => {
+  // const hoidanit = "erric 1"; // string
+  // const hoidanit = 25; // number
+  // const hoidanit = true; // boolean
+  // const hoidanit = undefined;
+  // const hoidanit = [1, 2, 3];
+  const hoidanit = {
+    name: "hoidanit",
+    age: 36,
+  };
+
   return (
     <>
-      <div> eric & hoidanit update</div>
+      <div> {JSON.stringify(hoidanit)} & hoidanit update</div>
+      {/* JSON.stringify dùng để chuyển đổi object thành chuỗi để in ra màn hình */}
+      <div>{console.log("ERIC")}</div>
       <div
         className="child"
         style={{ borderRadius: "10px", border: "solid, 1px" }}
