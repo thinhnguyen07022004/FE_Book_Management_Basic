@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./todo.css";
 
 const TodoNew = (props) => {
     // console.log("check props", props);
@@ -10,6 +11,7 @@ const TodoNew = (props) => {
     // addNewTodo("Eric");
     const handleClick = () => {
         addNewTodo(valueInput);
+        setValueInput("");
     };
 
     const handleOnchange = (event) => {
@@ -20,6 +22,7 @@ const TodoNew = (props) => {
         <div className="todo-new">
             <input
                 type="text"
+                value={valueInput}
                 className="todo-input"
                 placeholder="Nhập thông tin"
                 onChange={handleOnchange}

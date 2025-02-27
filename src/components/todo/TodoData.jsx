@@ -1,4 +1,5 @@
 // const TodoData = ({name}) => { //Cách 3
+import "./todo.css";
 const TodoData = (props) => {
   // props là một biến object {}
   const { name, age, data, todoList } = props; // Cách 1: Object Destructoring
@@ -8,10 +9,20 @@ const TodoData = (props) => {
   // console.log("check props", props);
   return (
     <div className="todo-data">
-      <div>My name is {data.address}</div>
-      <div>Learning React</div>
-      <div>Learning Vue</div>
-      <div> 
+      {todoList.map((item, index) => {
+        console.log(">>>>Check map:", item, index);
+        return (
+          <div className="todo-item">
+            <div>
+              {item.name}
+            </div>
+            <button>
+              Delete
+            </button>
+          </div>
+        )
+      })}
+      <div>
         {JSON.stringify(todoList)}
       </div>
     </div>
