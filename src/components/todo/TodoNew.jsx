@@ -30,9 +30,6 @@ const TodoNew = (props) => {
             <button className="todo-btn" onClick={handleClick}>
                 Add
             </button>
-            <div>
-                Value Input: {valueInput}
-            </div>
         </div>
     );
 };

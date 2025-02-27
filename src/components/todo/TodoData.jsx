@@ -12,19 +12,14 @@ const TodoData = (props) => {
       {todoList.map((item, index) => {
         console.log(">>>>Check map:", item, index);
         return (
-          <div className="todo-item">
-            <div>
+          <div className="todo-item" index={item.id}>
               {item.name}
-            </div>
-            <button>
-              Delete
-            </button>
+              <button>
+                Delete
+              </button>
           </div>
         )
       })}
-      <div>
-        {JSON.stringify(todoList)}
-      </div>
     </div>
   );
 };

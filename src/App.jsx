@@ -6,9 +6,9 @@ import { useState } from "react";
 const App = () => {
 
   const [todoList, setTodoList] = useState([
-    { id: 1, name: "Học React" },
-    { id: 2, name: "Học Vue" },
-    { id: 3, name: "Học Angular" },
+    // { id: 1, name: "Học React" },
+    // { id: 2, name: "Học Vue" },
+    // { id: 3, name: "Học Angular" },
   ]);
 
   const hoidanit = "Eric";
