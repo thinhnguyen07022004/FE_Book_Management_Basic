@@ -1,7 +1,7 @@
 // const TodoData = ({name}) => { //Cách 3
 const TodoData = (props) => {
   // props là một biến object {}
-  const { name, age, data } = props; // Cách 1: Object Destructoring
+  const { name, age, data, todoList } = props; // Cách 1: Object Destructoring
   // const name = props.name; //Cách 2
   // const age = props.age;
   // const data = props.data;
@@ -11,6 +11,9 @@ const TodoData = (props) => {
       <div>My name is {data.address}</div>
       <div>Learning React</div>
       <div>Learning Vue</div>
+      <div> 
+        {JSON.stringify(todoList)}
+      </div>
     </div>
   );
 };

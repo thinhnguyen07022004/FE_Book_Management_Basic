@@ -15,7 +15,14 @@ module.exports = {
     'react/jsx-no-target-blank': 'off',
     'react-refresh/only-export-components': [
       'warn',
-      { allowConstantExport: true },
+      { allowConstantExport: true }
     ],
+    "no-unused-vars": ["error", {
+      "vars": "all",
+      "args": "after-used",
+      "caughtErrors": "all",
+      "ignoreRestSiblings": false,
+      "reportUsedIgnorePattern": false
+    }]
   },
 }

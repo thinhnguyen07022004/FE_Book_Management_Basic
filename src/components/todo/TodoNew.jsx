@@ -1,28 +1,37 @@
+import { useState } from "react";
+
 const TodoNew = (props) => {
-  // console.log("check props", props);
-  const { addNewTodo } = props;
+    // console.log("check props", props);
+    const { addNewTodo } = props;
 
-  // addNewTodo("Eric");
-  const handleClick = () => {
-    alert("Click me");
-  };
+    // useState hook (getter, setter)
+    const [valueInput, setValueInput] = useState("");
 
-  const handleOnchange = (event) => {
-    console.log(">> handleChange", event.target.value);
-  };
-  return (
-    <div className="todo-new">
-      <input
-        type="text"
-        className="todo-input"
-        placeholder="Nhập thông tin"
-        onChange={handleOnchange}
-      />
-      <button className="todo-btn" onClick={handleClick}>
-        Add
-      </button>
-    </div>
-  );
+    // addNewTodo("Eric");
+    const handleClick = () => {
+        console.log("Value input", valueInput);
+    };
+
+    const handleOnchange = (event) => {
+        setValueInput(event.target.value);
+    };
+
+    return (
+        <div className="todo-new">
+            <input
+                type="text"
+                className="todo-input"
+                placeholder="Nhập thông tin"
+                onChange={handleOnchange}
+            />
+            <button className="todo-btn" onClick={handleClick}>
+                Add
+            </button>
+            <div>
+                Value Input: {valueInput}
+            </div>
+        </div>
+    );
 };
 
 export default TodoNew;
