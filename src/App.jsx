@@ -18,6 +18,11 @@ const App = () => {
     country: "Việt Nam",
   };
 
+  const deleteTodo = (id) => {
+    const todoNew = todoList.filter(item => item.id !== id)
+    setTodoList(todoNew)
+  }
+
   const addNewTodo = (name) => {
     const newTodo = {
       id: randomIntFromInterval(1, 100),
@@ -38,7 +43,7 @@ const App = () => {
         <TodoNew addNewTodo={addNewTodo} />
         
         {todoList.length > 0 ?
-          <TodoData name={hoidanit} age={age} data={data} todoList={todoList} />
+          <TodoData name={hoidanit} age={age} data={data} todoList={todoList} deleteTodo={deleteTodo}/>
         :
           <div className="todo-image">
             <img src={reactLogo} className="logo" />
