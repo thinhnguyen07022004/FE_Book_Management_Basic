@@ -12,8 +12,13 @@ const UserInput = () => {
         // console.log("check res1", res)
         if (res.data) {
             notification.success({
-                message: "create user",
+                message: "Create user",
                 description: "Tạo user thành công"
+            })
+        } else {
+            notification.error({
+                message: "Error create user",
+                description: JSON.stringify(res.message)
             })
         }
     }
