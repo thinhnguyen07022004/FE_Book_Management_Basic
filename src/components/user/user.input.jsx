@@ -1,5 +1,6 @@
 import { Button, Input } from "antd"
 import { useState } from "react"
+import axios from 'axios'
 
 const UserInput = () => {
     const [fullName, setFullName] = useState("")
@@ -7,6 +8,14 @@ const UserInput = () => {
     const [password, setPassword] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
     const handleClickBtn = () => {
+        const URL_BACKEND = "http://localhost:8080/api/v1/user";
+        const data = {
+            fullName: fullName,
+            email: email,
+            password: password,
+            phone: phoneNumber
+        }
+        axios.post(URL_BACKEND, data)
         console.log("check change", fullName, email, password, phoneNumber)
     }
 
@@ -44,7 +53,7 @@ const UserInput = () => {
                 <div>
                     <Button
                         onClick={handleClickBtn}
-                        tpye="primary"> Create User </Button>
+                        type="primary"> Create User </Button>
                 </div>
             </div>
         </div>
