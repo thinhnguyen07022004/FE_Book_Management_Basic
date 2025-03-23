@@ -11,7 +11,12 @@ const createUser = (fullName, email, password, phoneNumber) => {
     return axios.post(URL_BACKEND, data)
 }
 
+const fetchUserAPI = () => {
+    const URL_BACKEND = "/api/v1/user";
+    return axios.get(URL_BACKEND)
+}
+
 
 export {
-    createUser,
+    createUser, fetchUserAPI
 }

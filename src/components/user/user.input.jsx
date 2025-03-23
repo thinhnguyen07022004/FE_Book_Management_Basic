@@ -7,6 +7,7 @@ const UserInput = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
+
     const handleClickBtn = async () => {
         const res = await createUser(fullName, email, password, phoneNumber)
         // console.log("check res1", res)
