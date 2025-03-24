@@ -1,8 +1,9 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Table } from 'antd';
+import { Table, Popconfirm, notification } from 'antd';
 import UpdateUserModal from './update.user.modal';
 import { useState } from 'react';
 import ViewUserDetail from './view.user.detail';
+import { deleteUserAPI } from '../../services/api.service';
 
 const UserTable = (props) => {
     const { dataUsers, loadUser } = props
@@ -12,6 +13,7 @@ const UserTable = (props) => {
     const [dataUpdate, setDataUpdate] = useState(null)
 
     const [isModalViewOpen, setIsModalViewOpen] = useState(false)
+
     const [dataView, setDataView] = useState(null)
 
 
@@ -50,17 +52,40 @@ const UserTable = (props) => {
                             setIsModalUpdateOpen(true)
                             setDataUpdate(record)
                         }}
-                        style={{ cursor: "pointer", color: "orange" }} />
-                    <DeleteOutlined
-                        // onClick={() => {
-                        //     setIsModalViewOpen(true)
-                        //     setDataView(record)
-                        // }}
-                        style={{ cursor: "pointer", color: "red" }} />
+                        style={{ cursor: "pointer", color: "orange" }}
+                    />
+                    <Popconfirm
+                        title="Xóa người dùng"
+                        description="Bạn có chắc xóa người dùng này?"
+                        onConfirm={() => handleDelete(record._id)}
+                        okText="Yes"
+                        cancelText="No"
+                        placement='left'
+                    >
+                        <DeleteOutlined
+                            style={{ cursor: "pointer", color: "red" }}
+                        />
+                    </Popconfirm>
                 </div>
             ),
         },
     ];
+
+    const handleDelete = async (id) => {
+        const res = await deleteUserAPI(id)
+        if (res.data) {
+            notification.success({
+                message: "Delete User",
+                description: "Xoá user thành công"
+            })
+            await loadUser()
+        } else {
+            notification.error({
+                message: "Error delete User",
+                description: JSON.stringify(res.message)
+            })
+        }
+    }
 
     return (
         <>
