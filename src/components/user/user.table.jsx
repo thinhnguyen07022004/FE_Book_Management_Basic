@@ -2,6 +2,7 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Table } from 'antd';
 import UpdateUserModal from './update.user.modal';
 import { useState } from 'react';
+import ViewUserDetail from './view.user.detail';
 
 const UserTable = (props) => {
     const { dataUsers, loadUser } = props
@@ -10,13 +11,24 @@ const UserTable = (props) => {
 
     const [dataUpdate, setDataUpdate] = useState(null)
 
+    const [isModalViewOpen, setIsModalViewOpen] = useState(false)
+    const [dataView, setDataView] = useState(null)
+
+
     const columns = [
         {
             title: 'Id',
             dataIndex: '_id',
             render: (_, record) => {
                 return (
-                    <a>{record._id}</a>
+                    <a
+                        onClick={() => {
+                            setIsModalViewOpen(true)
+                            setDataView(record)
+                        }}
+                    >
+                        {record._id}
+                    </a >
                 )
             }
         },
@@ -39,7 +51,12 @@ const UserTable = (props) => {
                             setDataUpdate(record)
                         }}
                         style={{ cursor: "pointer", color: "orange" }} />
-                    <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
+                    <DeleteOutlined
+                        // onClick={() => {
+                        //     setIsModalViewOpen(true)
+                        //     setDataView(record)
+                        // }}
+                        style={{ cursor: "pointer", color: "red" }} />
                 </div>
             ),
         },
@@ -58,6 +75,12 @@ const UserTable = (props) => {
                 dataUpdate={dataUpdate}
                 setDataUpdate={setDataUpdate}
                 loadUser={loadUser}
+            />
+            <ViewUserDetail
+                dataView={dataView}
+                setDataView={setDataView}
+                isModalViewOpen={isModalViewOpen}
+                setIsModalViewOpen={setIsModalViewOpen}
             />
         </>
     )
