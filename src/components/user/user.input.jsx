@@ -34,7 +34,6 @@ const UserInput = (props) => {
         setEmail("")
         setPassword("")
         setPhoneNumber("")
-
     }
 
     return (
@@ -45,7 +44,7 @@ const UserInput = (props) => {
                     onClick={() => { setIsModalOpen(true) }}
                     type="primary"> Create User </Button>
             </div>
-            <Modal title="Basic Modal"
+            <Modal title="Create Users"
                 open={isModalOpen}
                 onOk={handleSubmitBtn}
                 onCancel={reserAndLoseModal}
