@@ -7,13 +7,13 @@ import { fetchUserAPI } from '../services/api.service';
 const UserPage = () => {
     const [dataUsers, setDataUsers] = useState([])
     const [current, setCurrent] = useState(1)
-    const [pageSize, setPageSize] = useState(10)
+    const [pageSize, setPageSize] = useState(5)
     const [total, setTotal] = useState(0)
 
     // empty array => run once
     useEffect(() => {
         loadUser()
-    }, [])
+    }, [current, pageSize])
 
     const loadUser = async () => {
         const res = await fetchUserAPI(current, pageSize)
@@ -25,6 +25,8 @@ const UserPage = () => {
         }
 
     }
+
+    console.log(">>>>check: ", pageSize)
     return (
         <div style={{ padding: "20px" }}>
             <UserInput loadUser={loadUser} />
