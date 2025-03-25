@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, AudioOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
-import { useState } from 'react';
+import { Children, useState } from 'react';
 
 
 const Header = () => {
@@ -25,7 +25,22 @@ const Header = () => {
         {
             label: <Link href to={'/books'}>Books</Link>,
             key: 'Books',
+            icon: <AudioOutlined />,
+        },
+        {
+            label: 'Cài đặt',
+            key: 'setting',
             icon: <SettingOutlined />,
+            children: [
+                {
+                    label: <Link href to={'/login'}>Đăng nhập</Link>,
+                    key: 'login',
+                },
+                {
+                    label: 'Đăng xuất',
+                    key: 'logout',
+                }
+            ]
         },
     ];
     return (

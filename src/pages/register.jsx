@@ -1,6 +1,6 @@
-import { Button, Form, Input, notification } from 'antd'
+import { Button, Col, Divider, Form, Input, notification, Row } from 'antd'
 import { registerUserAPI } from '../services/api.service';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const RegsiterPage = () => {
 
@@ -36,66 +36,89 @@ const RegsiterPage = () => {
             onFinish={onFinish}
         // onFinishFailed={onFinishFailed}
         >
+
+            <h3 style={{ textAlign: "center" }}>Đăng ký tài khoản</h3>
             <div style={{
-                margin: "50px",
+                margin: "30px",
             }}>
+                <Row justify={"center"}>
+                    <Col xs={24} md={8}>
+                        <Form.Item
+                            label="Full Name"
+                            name="fullName"
+                            rules={[{ required: true, message: 'Please input your username!' }]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </Col>
+                </Row>
 
+                <Row justify={"center"}>
+                    <Col xs={24} md={8}>
+                        <Form.Item
+                            label="Email"
+                            name="email"
+                            rules={[{ required: true, message: 'Please input your email!' }]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </Col>
+                </Row>
 
-                <Form.Item
-                    label="Full Name"
-                    name="fullName"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
-                >
-                    <Input />
-                </Form.Item>
+                <Row justify={"center"}>
+                    <Col xs={24} md={8}>
+                        <Form.Item
+                            label="Password"
+                            name="password"
+                            rules={[{ required: true, message: 'Please input your password!' }]}
+                        >
+                            <Input.Password />
+                        </Form.Item>
+                    </Col>
+                </Row>
+                <Row justify={"center"}>
+                    <Col xs={24} md={8}>
+                        <Form.Item
+                            label="Phone Number"
+                            name="phone"
+                            rules={[
+                                {
+                                    required: true,
+                                    pattern: new RegExp(/\d+/g),
+                                    message: "Wrong format!"
+                                }
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </Col>
+                </Row>
 
-                <Form.Item
-                    label="Email"
-                    name="email"
-                    rules={[{ required: true, message: 'Please input your email!' }]}
-                >
-                    <Input />
-                </Form.Item>
+                <Row justify={"center"}>
+                    <Col xs={24} md={8}>
+                        <div>
+                            <Button
+                                onClick={() => { form.submit }}
+                                type="primary" htmlType="submit">
+                                Đăng ký
+                            </Button>
+                            <Button onClick={() => {
+                                form.setFieldsValue({
+                                    email: "tuuju2@gmail.com",
+                                    fullName: "thinh"
+                                })
+                                console.log("check form: ", form.getFieldsValue())
+                            }}>
+                                Test
+                            </Button>
+                            <Divider />
+                            <div>Đã có tài khoản? <Link href to={"/login"}>Đăng nhập tại đây</Link></div>
+                        </div>
+                    </Col>
+                </Row>
 
-                <Form.Item
-                    label="Password"
-                    name="password"
-                    rules={[{ required: true, message: 'Please input your password!' }]}
-                >
-                    <Input.Password />
-                </Form.Item>
-
-                <Form.Item
-                    label="Phone Number"
-                    name="phone"
-                    rules={[
-                        {
-                            required: true,
-                            pattern: new RegExp(/\d+/g),
-                            message: "Wrong format!"
-                        }
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <div>
-                    <Button
-                        onClick={() => { form.submit }}
-                        type="primary" htmlType="submit">
-                        Đăng ký
-                    </Button>
-                    <Button onClick={() => {
-                        form.setFieldsValue({
-                            email: "tuuju2@gmail.com",
-                            fullName: "thinh"
-                        })
-                        console.log("check form: ", form.getFieldsValue())
-                    }}>
-                        Test
-                    </Button>
-                </div>
             </div>
-        </Form>
+        </Form >
     )
 }
 
