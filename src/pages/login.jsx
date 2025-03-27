@@ -1,15 +1,28 @@
-import { ArrowRightOutlined } from "@ant-design/icons";
-import { Button, Col, Divider, Form, Input, Row } from "antd"
+import { ArrowRightOutlined } from "@ant-design/icons"
+import { Button, Col, Divider, Form, Input, message, notification, Row } from "antd"
 import { Link, useNavigate } from "react-router-dom";
+import { loginAPI } from "../services/api.service";
+import { useState } from "react";
 
 const LoginPage = () => {
     const [form] = Form.useForm();
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
     const onFinish = async (values) => {
-        alert("me")
+        setLoading(true)
+        const res = await loginAPI(values.email, values.password, 0)
+        if (res.data) {
+            message.success("Đăng nhập thành công");
+            navigate("/")
+        } else {
+            notification.error({
+                message: "Error Login",
+                description: JSON.stringify(res.message)
+            })
+        }
+        setLoading(false)
     }
-
 
     return (
         <Row justify={"center"} style={{ marginTop: "30px" }}>
@@ -31,7 +44,6 @@ const LoginPage = () => {
                             label="Email"
                             name="email"
                             rules={[
-
                                 {
                                     required: true,
                                     message: 'Email không được để trống'
@@ -52,6 +64,7 @@ const LoginPage = () => {
                         >
                             <Input.Password />
                         </Form.Item>
+
                         <Form.Item>
                             <div style={{
                                 display: "flex",
@@ -59,21 +72,20 @@ const LoginPage = () => {
                                 alignItems: "center"
                             }}>
                                 <Button
-                                    onClick={() => { form.submit }}
-                                    type="primary" >
+                                    loading={loading}
+                                    onClick={() => form.submit()}
+                                    type="primary">
                                     Login
                                 </Button>
-                                <Link to="/">Go to homepage <ArrowRightOutlined /></Link>
+                                <Link to="/">Go to home page <ArrowRightOutlined /></Link>
                             </div>
                         </Form.Item>
-
                     </Form>
                     <Divider />
                     <div style={{ textAlign: "center" }}>Chưa tài khoản? <Link href to={"/register"}>Đăng ký tại đây</Link></div>
                 </fieldset>
             </Col>
         </Row>
-
     )
 }
 
