@@ -14,7 +14,6 @@ const MyComponent = () => {
     <>
       <div> {JSON.stringify(hoidanit)} & hoidanit update</div>
       {/* JSON.stringify dùng để chuyển đổi object thành chuỗi để in ra màn hình */}
-      <div>{console.log("ERIC")}</div>
       <div
         className="child"
         style={{ borderRadius: "10px", border: "solid, 1px" }}

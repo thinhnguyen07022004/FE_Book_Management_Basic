@@ -12,13 +12,11 @@ import { AuthContext } from '../context/auth.context';
 const Header = () => {
     const [current, setCurrent] = useState('');
     const onClick = (e) => {
-        console.log('click ', e);
         setCurrent(e.key);
     };
 
     const { user } = useContext(AuthContext)
 
-    console.log("check user:", user)
     const items = [
         {
             label: <Link href to={'/'}>Home</Link>,

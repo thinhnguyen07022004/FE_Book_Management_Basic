@@ -77,7 +77,13 @@ const loginAPI = (email, password, delay) => {
     return axios.post(URL_BACKEND, data)
 }
 
+const getAccountAPI = () => {
+    const URL_BACKEND = "/api/v1/auth/account";
+    return axios.get(URL_BACKEND)
+}
+
 export {
     createUser, fetchUserAPI, updateUser,
-    deleteUserAPI, handleUploadFile, updateUserAvatar, registerUserAPI, loginAPI
+    deleteUserAPI, handleUploadFile, updateUserAvatar,
+    registerUserAPI, loginAPI, getAccountAPI
 }
