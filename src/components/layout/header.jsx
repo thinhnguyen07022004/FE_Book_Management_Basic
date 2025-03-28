@@ -1,7 +1,8 @@
 import { Link, NavLink } from 'react-router-dom'
 import { AppstoreOutlined, AudioOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
-import { Children, useState } from 'react';
+import { Children, useContext, useState } from 'react';
+import { AuthContext } from '../context/auth.context';
 
 
 const Header = () => {
@@ -11,6 +12,9 @@ const Header = () => {
         setCurrent(e.key);
     };
 
+    const { user } = useContext(AuthContext)
+
+    console.log("check user:", user)
     const items = [
         {
             label: <Link href to={'/'}>Home</Link>,
