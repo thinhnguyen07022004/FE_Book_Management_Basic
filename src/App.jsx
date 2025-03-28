@@ -5,9 +5,10 @@ import { Outlet } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "./components/context/auth.context";
 import { getAccountAPI } from "./services/api.service";
+import { Spin } from 'antd';
 
 const App = () => {
-  const { setUser } = useContext(AuthContext)
+  const { setUser, isLoading, setIsLoading } = useContext(AuthContext)
 
   useEffect(() => {
     fetchUserAPI();
@@ -18,19 +19,32 @@ const App = () => {
     if (res.data) {
       //success
       setUser(res.data.user)
-      console.log("check user:", res.data)
     }
+    setIsLoading(false)
   }
 
 
   return (
     <>
-      {/* <ParentsComponent>
-        <ChildrenComponent />
-      </ParentsComponent> */}
-      <Header />
-      <Outlet />
-      <Footer />
+      {isLoading === true ?
+        <div style={{
+          position: "fixed",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%,-50%)"
+        }}>
+
+
+          <Spin />
+        </div>
+        :
+        <>
+          <Header />
+          <Outlet />
+          <Footer />
+        </>
+      }
+
     </>
   );
 };
